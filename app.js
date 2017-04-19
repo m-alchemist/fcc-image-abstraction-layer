@@ -29,10 +29,14 @@ mongoose.connection.on('error', function(err) {
         process.exit(-1);
     }
 );
-app.listen(8080, ()=>{
-console.log('Running on port 8080');
+app.listen(port,()=>{
+  console.log('Running ');
 
-});
+})
+// app.listen(8080, ()=>{
+// console.log('Running on port 8080');
+//
+// });
 route(app);
 
 
