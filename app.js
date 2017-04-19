@@ -14,12 +14,25 @@ app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 mongoose.Promise=global.Promise;
 
-if(process.env.NODE_ENV!=='test'){
-mongoose.connect('mongodb://localhost/');
-}
-//watch for incoming req to the route
-//http://localhost:3050/api
 
+
+var mongoUri = process.env.MONGOLAB_URI || 'mongodb://localhost/app-dev';
+var mongoOptions = {db: {safe: true}};
+var port = process.env.PORT || 3000;
+var baseUrl = process.env.BASE_URL || ('http://localhost:' + port + '/');
+var urlConnection="mongodb://heroku_h6nlzr0c:6n34j5qsf8mco209tral810ke6@ds163940.mlab.com:63940/heroku_h6nlzr0c";
+
+
+mongoose.connect(urlConnection);
+mongoose.connection.on('error', function(err) {
+        console.error('MongoDB connection error: ' + err);
+        process.exit(-1);
+    }
+);
+app.listen(8080, ()=>{
+console.log('Running on port 8080');
+
+});
 route(app);
 
 
