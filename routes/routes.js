@@ -4,7 +4,7 @@ const imageController=require('../controller/images_controller');
    app.get('/', function(req, res, next) {
      res.render('index');
    });
-   app.get('/api/imagesearch/:term',imageController.searchApi);
+   app.get('/imagesearch/:term',imageController.searchApi);
    app.get('/latest',imageController.latest);
 
  })
