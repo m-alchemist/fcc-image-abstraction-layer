@@ -25,7 +25,7 @@ searchApi(req,res){
   let term= req.params.term,
   offset = req.query.offset || 10,
   timeStamp=Date.now();
-  timeStamp=new Date(timeStamp*1000);
+  timeStamp=new Date(timeStamp);
   let searchHistory=new searchTerm({term, timeStamp});
   searchHistory.save();
   imgur.getImage(term, offset)
